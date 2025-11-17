@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  build_kernel:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Build Kernel
+        run: |
+          source ./build_5.15-v1.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          path: |
+            build/*
+          compression-level: 0
