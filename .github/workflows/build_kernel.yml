@@ -3,6 +3,7 @@ permissions:
   contents: write
 on:
   workflow_dispatch:
+  push:
 
 jobs: 
   build_kernel:
@@ -30,9 +31,6 @@ jobs:
 
             - **KERNELSU included (not next)**
             - **Run Number:** ${{ github.run_number }}
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
       - uses: actions/upload-artifact@v4
         with:
           path: |
