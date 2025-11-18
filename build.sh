@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo -e "\n[INFO]: BUILD STARTED..!\n"
-
+rm -rf build/
+rm -rf AnyKernel3/
 #init submodules
 git submodule init && git submodule update
 
@@ -83,6 +84,7 @@ export BUILD_OPTIONS=(
 )
 
 build_kernel(){
+    curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
     # Make default configuration.
     make "${BUILD_OPTIONS[@]}" dm1q_defconfig
 
