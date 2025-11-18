@@ -7,7 +7,7 @@ git submodule init && git submodule update
 
 export KERNEL_ROOT="$(pwd)"
 export ARCH=arm64
-export KBUILD_BUILD_USER="@ravindu644"
+export KBUILD_BUILD_USER="@sauronbach"
 
 # Function to detect OS and install dependencies
 install_dependencies() {
@@ -91,7 +91,14 @@ build_kernel(){
 
     # Copy the built kernel to the build directory
     cp "${KERNEL_ROOT}/out/arch/arm64/boot/Image" "${KERNEL_ROOT}/build"
-
+    
     echo -e "\n[INFO]: BUILD FINISHED..!"
+    cd ${KERNEL_ROOT}
+    git clone https://github.com/voltage-dmxq/AnyKernel3.git
+    
+    cp "${KERNEL_ROOT}/build/Image" "${KERNEL_ROOT}/AnyKernel3"
+    
+    (cd AnyKernel3/ && zip -r ../DMXQ-AOSP-KERNEL.ZIP ./*)
+    mv DMXQ-AOSP-KERNEL.ZIP build/
 }
 build_kernel
