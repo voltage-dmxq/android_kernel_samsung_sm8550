@@ -167,3 +167,6 @@ arch/*/boot/dts/vendor
 
 # Documentation toolchain
 sphinx_*/
+
+AnyKernel3/
+build/
