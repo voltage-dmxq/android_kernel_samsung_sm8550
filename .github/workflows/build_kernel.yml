@@ -20,7 +20,16 @@ jobs:
           haskell: true
           large-packages: true
           swap-storage: false
-      
+      - name: Create Swap File
+        run: |
+          # Create a 12GB swap file
+          sudo fallocate -l 12G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          # Verify the memory increase
+          echo "Memory status after swap:"
+          free -h
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Build Kernel
