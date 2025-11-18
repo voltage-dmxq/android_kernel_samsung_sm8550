@@ -1,5 +1,6 @@
 name: Build
-
+permissions:
+  contents: write
 on:
   workflow_dispatch:
 
@@ -9,36 +10,12 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@v1.3.1
-        with:
-          tool-cache: true
-          android: true
-          dotnet: true
-          haskell: true
-          large-packages: true
-          swap-storage: false
 
-      - name: Create Swap File
-        run: |
-          # Create a 12GB swap file
-          sudo fallocate -l 12G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
-          # Verify the memory increase
-          echo "Memory status after swap:"
-          free -h
-      - name: Checkout repo
-        uses: actions/checkout@v4
       - name: Build Kernel
         run: |
-          source ./build.sh
-      - uses: actions/upload-artifact@v4
-        with:
-          path: |
-            build/*
-          compression-level: 0
+          mkdir -p build/
+          touch build/test.k
+
           
       - name: Publish
         id: release
