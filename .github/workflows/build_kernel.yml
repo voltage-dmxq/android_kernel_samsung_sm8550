@@ -1,7 +1,9 @@
 name: Build
-
+permissions:
+  contents: write
 on:
   workflow_dispatch:
+  push:
 
 jobs: 
   build_kernel:
@@ -9,13 +11,35 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: false
       - name: Build Kernel
         run: |
           source ./build.sh
+
       - uses: actions/upload-artifact@v4
         with:
           path: |
             build/*
           compression-level: 0
+          
+      - name: Publish
+        id: release
+        uses: softprops/action-gh-release@v2.4.2
+        with:
+          files: build/*
+          name: KERNEL_${{ github.run_number }}
+          tag_name: ${{ github.run_number }}
+          
+          body: |
+            **DMXQ-AOSP-KERNEL**:
+
+            - **KERNELSU included (not next)**
+            - **Run Number:** ${{ github.run_number }}
