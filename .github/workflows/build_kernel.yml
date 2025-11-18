@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Kernel
         run: |
-          source ./build_5.15-v1.sh
+          source ./build.sh
       - uses: actions/upload-artifact@v4
         with:
           path: |
