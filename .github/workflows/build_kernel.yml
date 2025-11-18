@@ -20,6 +20,9 @@ jobs:
           haskell: true
           large-packages: true
           swap-storage: false
+      
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Build Kernel
         run: |
           source ./build.sh
