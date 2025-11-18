@@ -84,7 +84,7 @@ export BUILD_OPTIONS=(
 )
 
 build_kernel(){
-    curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+    curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -
     # Make default configuration.
     make "${BUILD_OPTIONS[@]}" dm1q_defconfig
 
