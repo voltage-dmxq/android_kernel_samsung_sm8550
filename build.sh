@@ -98,6 +98,7 @@ build_kernel(){
     
     cp "${KERNEL_ROOT}/build/Image" "${KERNEL_ROOT}/AnyKernel3"
     
-    zip -r "${KERNEL_ROOT}/build/DMXQ-AOSP-KERNEL.zip" "${KERNEL_ROOT}/AnyKernel3/*"
+    (cd AnyKernel3/ && zip -r ../DMXQ-AOSP-KERNEL.ZIP ./*)
+    mv DMXQ-AOSP-KERNEL.ZIP build/
 }
 build_kernel
