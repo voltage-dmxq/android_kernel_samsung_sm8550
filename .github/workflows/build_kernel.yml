@@ -19,3 +19,22 @@ jobs:
           path: |
             build/*
           compression-level: 0
+          
+      - name: Publish
+        id: release
+        uses: softprops/action-gh-release@v2.4.2
+        with:
+          files: build/DMXQ*.zip
+          name: KERNEL_${{ github.run_number }}
+          tag_name: ${{ github.run_number }}
+          body: |
+            **DMXQ-AOSP-KERNEL**:
+
+            - **KERNELSU included (not next)**
+            - **Run Number:** ${{ github.run_number }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          path: |
+            build/*
+          compression-level: 0
