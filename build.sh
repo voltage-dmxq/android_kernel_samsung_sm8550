@@ -91,7 +91,7 @@ build_kernel(){
     make "${BUILD_OPTIONS[@]}" Image || exit 1
 
     # Copy the built kernel to the build directory
-    cp "${KERNEL_ROOT}/out/arch/arm64/boot/Image" "${KERNEL_ROOT}/build"
+    mv "${KERNEL_ROOT}/out/arch/arm64/boot/Image" "${KERNEL_ROOT}/build"
     
     echo -e "\n[INFO]: BUILD FINISHED..!"
     cd ${KERNEL_ROOT}
