@@ -1,7 +1,6 @@
 #!/bin/bash
 
 echo -e "\n[INFO]: BUILD STARTED..!\n"
-rm -rf build/
 rm -rf AnyKernel3/
 #init submodules
 git submodule init && git submodule update
