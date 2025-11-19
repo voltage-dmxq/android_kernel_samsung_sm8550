@@ -53,5 +53,5 @@ jobs:
           body: |
             **DMXQ-AOSP-KERNEL**:
 
-            - **KERNELSU included (not next)**
+            - **KernelSU - Next included**
             - **Run Number:** ${{ github.run_number }}
