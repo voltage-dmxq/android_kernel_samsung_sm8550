@@ -90,14 +90,13 @@ build_kernel(){
     # Build the kernel
     make "${BUILD_OPTIONS[@]}" Image || exit 1
 
-    # Copy the built kernel to the build directory
-    mv "${KERNEL_ROOT}/out/arch/arm64/boot/Image" "${KERNEL_ROOT}/build"
     
     echo -e "\n[INFO]: BUILD FINISHED..!"
     cd ${KERNEL_ROOT}
     git clone https://github.com/voltage-dmxq/AnyKernel3.git
     
-    cp "${KERNEL_ROOT}/build/Image" "${KERNEL_ROOT}/AnyKernel3"
+    # Copy the built kernel to the AnyKernel3 directory
+    mv "${KERNEL_ROOT}/out/arch/arm64/boot/Image" "${KERNEL_ROOT}/AnyKernel3"
     
     (cd AnyKernel3/ && zip -r ../DMXQ-AOSP-KERNEL.ZIP ./*)
     mv DMXQ-AOSP-KERNEL.ZIP build/
